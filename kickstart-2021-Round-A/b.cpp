@@ -24,19 +24,17 @@ bool time_profile = false;
 
 void solve()
 {
-	int n, k;
-	cin >> n >> k;
-	vector<char> v(n);
-	for (int32_t i = 0; i < n; cin >> v[i++]);
-	int32_t goodness = 0;
-	for (int i = 0; i < v.size() / 2; i++)
-	{
-		if (v[i] != v[v.size() - i - 1])
-		{
-			goodness++;
+	int a,b;
+	cin>>a>>b;
+	
+	vector< vector<int16_t> > v(a,vector<int16_t>(b,0));
+
+	for(int i=0;i<v.size();i++,cout<<endl)
+		for(int j=0;j<v[i].size();j++){
+			cout<<v[i][j];
 		}
-	}
-	cout << abs(goodness - k);
+
+
 }
 int main()
 {
