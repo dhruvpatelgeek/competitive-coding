@@ -24,30 +24,54 @@ bool MULTI_TEST=true;
 #define ll long long
 //----------------------------------------------------------------
 
-void solve(){
-	ll n,k,x;cin>>n>>k>>x;
-	vector< int > v(n);
-	for(ll i=0;i<n;cin>>v[i++]);
-	ll _num_arr=1;
-	if(n==1){
-		cout<<1;
-		return;
-	}
-	sort(v.begin(),v.end());
-	for(ll i=0;i<v.size()-1;i++){
-		if(v[i+1]-v[i]>x){
-			if(v[i+1]-v[i]<=2*x){
-				if(k>0){
-					k--;
-				} else {
-					_num_arr++;
-				}
+map <int,int> m;
+int m_sum = 0;
+void generate(int k,int w, vector<int> a){
+	if(k==1){
+		cout<<endl;
+		int sum=0;
+		for(int i=0;i<a.size();cout<<a[i++]<<"\t");
+		int weight=0;
+		vector <int> cdia;
+		for(int i=0;i<a.size();i++){
+			if(weight+m[a[i]]>w){
+				break;
 			} else {
-				_num_arr++;	
+				cdia.pb(a[i]);
+				weight+=m[a[i]];
+				sum+=a[i];
 			}
 		}
+		cout<<" >>"<<weight<<" ->"<<sum;
+		m_sum=max(sum,m_sum);
+	} else {
+	generate(k-1,w,a);
+	for(int i=0;i<k-1;i++){
+			if (k%2==0){
+				swap(a[i],a[k-1]);
+			} else {
+				swap(a[0],a[k-1]);
+			}
+			generate(k-1,w,a);
+		}
+	}	
+}
+void solve(){
+	
+	int n,w;cin>>n>>w;
+	int *a=new int[n];
+	for(int i=0;i<n;cin>>a[i++]);
+	for(int i=0,q=0;i<n;i++){
+		cin>>q;
+		m[a[i]]=q;
 	}
-	cout<<_num_arr;
+	
+	vector <int> v(n);
+	memcpy(&v[0],a,sizeof(int)*n);
+	generate(v.size(),w,v);
+	delete[] a;
+
+	cout<<"\n the answer is \t"<<m_sum;
 }
 int main(){
 	ios_base::sync_with_stdio(false);
