@@ -20,69 +20,10 @@ bool MULTI_TEST=true;
 #define y second
 #define pb push_back
 #define all(x) (x).begin(), (x).end()
-
 #define ll long long
 //----------------------------------------------------------------
 
 void solve(){
-	int ns;cin>>ns;	
-	int n,w;cin>>n>>w;
-	n=n*ns;
-	int *val=new int[n+1];
-	int *weight=new int[n+1];
-	val[0]=0;
-	weight[0]=0;
-	for(int i=1;i<n+1;cin>>val[i++]);
-	for(int i=1;i<n+1;weight[i++]=1);
-
-	int ** dp = new int*[n+1];
-	for(int i=0;i<n+1;i++){
-		dp[i]=new int[w+1];
-		memset(dp[i],0x0,sizeof(int)*(w+1));
-	}
-
-	cout<<endl;
-	for(int i=0;i<n+1;i++,cout<<endl){
-		for(int j=0;j<w+1;j++){
-			cout<<dp[i][j]<<"\t";
-		}
-	}
-	
-	for(int i=1;i<n+1;i++){
-		for(int j=1;j<w+1;j++){
-			if(weight[i]>j){
-				dp[i][j]=dp[i-1][j];
-			} else {
-				dp[i][j]=max(dp[i-1][j],dp[i-1][j-weight[i]]+val[i]);
-			}
-		}
-	}
-	cout<<endl;
-	for(int i=0;i<n+1;i++,cout<<endl){
-		for(int j=0;j<w+1;j++){
-			cout<<dp[i][j]<<"\t";
-		}
-	}
-	vector< pair<int,int> > ele;
-
-	for(int i=n,j=w;i!=0&& j!=0;){
-		if(dp[i][j]==dp[i-1][j]){
-			i--;
-		} else {
-			ele.pb(mp(val[i],weight[i]));
-			j-=weight[i];
-		}
-	}
-
-	for(int i=0;i<ele.size();i++){cout<<endl<<ele[i].x<<" "<<ele[i].y;}
-	delete[] val;
-	delete[] weight;
-
-	for(int i=0;i<n+1;i++){
-		delete[] dp[i];
-	}
-	delete[] dp;
-
 }
 int main(){
 	ios_base::sync_with_stdio(false);

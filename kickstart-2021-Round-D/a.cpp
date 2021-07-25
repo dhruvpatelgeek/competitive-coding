@@ -2,88 +2,50 @@
 using namespace std;
 
 // template type--------------------------------------------------
-int TEMPLATE_TYPE = 0;
+int TEMPLATE_TYPE = 1;
 // type 0 is coderdorces
 // type 1 is google kickstart
 //----------------------------------------------------------------
 
 //Time profile----------------------------------------------------
 bool time_profile = false;
-bool MULTI_TEST=false;
 //----------------------------------------------------------------
 
 //[competitive template]------------------------------------------
 #define mp make_pair
 #define mv make_vector
+#define s size
 #define mt make_tuple
+
 #define x first
 #define y second
 #define pb push_back
-#define all(x) (x).begin(), (x).end()
+typedef long long ll;
 
-#define ll long long
 //----------------------------------------------------------------
 
-void solve(){
+int binary_search(vector<int>&v,int s,int e,int k){
 	
-	ll n,w;cin>>n>>w;
-	ll *val=new ll[n+1];
-	ll *weight=new ll[n+1];
-	val[0]=0;
-	weight[0]=0;
-	for(ll i=1;i<n+1;i++){
-		cin>>weight[i];
-		cin>>val[i];
+	if(v[(s+e)/2]<k){
+
+	} else if(v[(s+e)/2]>k){
+		
+	} else {
+		
 	}
 
-	ll ** dp = new ll*[n+1];
-	for(ll i=0;i<n+1;i++){
-		dp[i]=new ll[w+1];
-		memset(dp[i],0x0,sizeof(ll)*(w+1));
-	}
-	for(ll i=1;i<n+1;i++){
-		for(ll j=1;j<w+1;j++){
-			if(weight[i]>j){
-				dp[i][j]=dp[i-1][j];
-			} else {
-				dp[i][j]=max(dp[i-1][j],dp[i-1][j-weight[i]]+val[i]);
-			}
-		}
-	}
-	vector< pair<ll,ll> > ele;
-
-	for(ll i=n,j=w;i!=0&& j!=0;){
-		if(dp[i][j]==dp[i-1][j]){
-			i--;
-		} else {
-			ele.pb(mp(val[i],weight[i]));
-			j-=weight[i];
-		}
-	}
-	ll ans=0;
-	for(ll i=0;i<ele.size();i++){
-		ans+=ele[i].x;
-	}
-	
-	delete[] val;
-	delete[] weight;
-
-	for(ll i=0;i<n+1;i++){
-		delete[] dp[i];
-	}
-	delete[] dp;
-	
-	cout<<ans;
 }
-int main(){
+void solve(){
+	int n,k,cin>>n>>k;vector<int> v(n);for(int i=0;i<n;cin>>v[i++]);
+}
+int main()
+{
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	int t;
 	double total = 0;
 	int i = 1;
-	t=1;
-	if (MULTI_TEST)
-		cin >> t;
+	cin >> t;
 	if (time_profile)
 	{
 		std::chrono::time_point<std::chrono::system_clock> start, end;
@@ -115,3 +77,4 @@ int main(){
 		}
 	}
 }
+
