@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>~/Desktop/kick/s1/s3/a.cpp.html</title>
+<meta name="Generator" content="Vim/8.2">
+<meta name="plugin-version" content="vim8.1_v2">
+<meta name="syntax" content="cpp">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=,use_input_for_pc=fallback">
+<meta name="colorscheme" content="zellner">
+<style>
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.PreProc { color: #a020f0; }
+.Constant { color: #ff00ff; }
+.Special { color: #ff00ff; }
+.Statement { color: #a52a2a; }
+.Type { color: #0000ff; }
+.Comment { color: #ff0000; }
+-->
+</style>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="PreProc">#include </span><span class="Constant">&lt;bits/stdc++.h&gt;</span>
+
+<span class="Statement">using</span> <span class="Type">namespace</span> std;
+
+<span class="Comment">// LEETCODE CLASS ------------------------------------------------------------------------</span>
+<span class="Type">class</span> Solution {
+	<span class="Comment">// once a i is executed it should not be executed again</span>
+	unordered_map &lt; <span class="Type">int</span>,<span class="Type">bool</span>&gt; i_sieve;
+	<span class="Comment">// once a pair of i and j are executed they no longer have to be executed again</span>
+	unordered_map &lt; <span class="Type">int</span>,<span class="Type">int</span>&gt; i_j_sieve;
+	<span class="Comment">// once a set of i,j,k is executed it should no longer be executed again</span>
+	unordered_map &lt; <span class="Type">int</span>, vector&lt;<span class="Type">int</span>&gt; &gt; i_j_k_sieve;
+<span class="Statement">public</span>:
+    vector&lt; vector &lt;<span class="Type">int</span>&gt; &gt; threeSum(vector&lt;<span class="Type">int</span>&gt;&amp; nums) {
+	<span class="Comment">// a set to make sure we have distinct solutions</span>
+	set &lt; vector&lt;<span class="Type">int</span>&gt; &gt; vset;
+	vector&lt;<span class="Type">int</span>&gt; elx_vset(<span class="Constant">3</span>);
+	<span class="Type">const</span> <span class="Type">int32_t</span> sz=(<span class="Type">int32_t</span>)nums.size();
+	<span class="Statement">if</span>((<span class="Type">int</span>)nums.size()&lt;<span class="Constant">2</span>){
+		<span class="Statement">return</span> vector&lt;vector&lt;<span class="Type">int</span>&gt;&gt;(begin(vset), end(vset));
+	}
+
+	<span class="Comment">// add all the possible elemets in a multi map</span>
+	vector &lt;<span class="Type">int</span>&gt; pvec(<span class="Constant">1</span>);
+	<span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">0</span>;i&lt;sz;i++){
+		<span class="Statement">if</span>(i_j_k_sieve.count(nums[i])!=<span class="Constant">0</span>){
+			i_j_k_sieve[nums[i]].push_back(i);
+		} <span class="Statement">else</span>{
+			pvec[<span class="Constant">0</span>]=i;
+			i_j_k_sieve[nums[i]]=pvec;
+		}
+	}
+
+	<span class="Comment">// for all the possible elements see if the chosen pair is </span>
+	<span class="Comment">// 	1. distinct</span>
+	<span class="Comment">// 	2. has not been used before</span>
+	<span class="Comment">// 	3. meets the i!=j!=k and ni+nj+nk = 0</span>
+	vector &lt;<span class="Type">int</span>&gt; kset;
+	<span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">0</span>,tar=<span class="Constant">0</span>;i&lt;sz;i++){
+		<span class="Statement">if</span>(i_sieve.count(nums[i])!=<span class="Constant">0</span>){
+			<span class="Statement">continue</span>;
+		}
+		<span class="Statement">for</span>(<span class="Type">int</span> j=<span class="Constant">0</span>;j&lt;sz;j++){
+			<span class="Statement">if</span>(i!=j){
+					<span class="Statement">if</span>(does_i_j_exist(nums[i],nums[j])){
+						<span class="Statement">continue</span>;
+					}
+
+					<span class="Comment">// for a given pair of i and j</span>
+					<span class="Comment">// k can be simply found but using</span>
+					<span class="Comment">// k=-i-j</span>
+					tar=-<span class="Constant">1</span>*(nums[i]+nums[j]);
+					<span class="Statement">if</span>(i_j_k_sieve.count(tar)==<span class="Constant">0</span>){
+						<span class="Statement">continue</span>;
+					}
+					kset=i_j_k_sieve[tar];
+					<span class="Statement">for</span>(<span class="Type">int</span> itr_k=<span class="Constant">0</span>,k=<span class="Constant">0</span>;itr_k&lt;(<span class="Type">int</span>)kset.size();itr_k++){
+						k=kset[itr_k];
+						<span class="Statement">if</span>(k==i||k==j){
+							<span class="Statement">continue</span>;
+						}
+						elx_vset.clear();
+						elx_vset.push_back(nums[i]);
+						elx_vset.push_back(nums[j]);
+						elx_vset.push_back(nums[k]);
+						sort(elx_vset.begin(),elx_vset.end());
+
+						vset.insert(elx_vset);
+						<span class="Statement">break</span>;
+					}
+
+				}
+		}
+		i_sieve[nums[i]]=<span class="Constant">true</span>;
+	}
+	<span class="Statement">return</span> vector&lt;vector&lt;<span class="Type">int</span>&gt;&gt;(begin(vset), end(vset));
+    }
+    <span class="Comment">// checks if a polying pair of i and j have been executed before</span>
+    <span class="Type">bool</span> does_i_j_exist(<span class="Type">int</span> i,<span class="Type">int</span> j){
+	<span class="Statement">if</span>(i&lt;j){
+		<span class="Statement">if</span>(i_j_sieve.count(i)==<span class="Constant">0</span>){
+			i_j_sieve[i]=j;
+			<span class="Statement">return</span> <span class="Constant">true</span>;
+		} <span class="Statement">else</span> {
+			<span class="Statement">return</span> <span class="Constant">false</span>;
+		}
+	} <span class="Statement">else</span> {
+		<span class="Statement">if</span>(i_j_sieve.count(j)==<span class="Constant">0</span>){
+			i_j_sieve[j]=i;
+			<span class="Statement">return</span> <span class="Constant">true</span>;
+		} <span class="Statement">else</span> {
+			<span class="Statement">return</span> <span class="Constant">false</span>;
+		}
+	}
+    }
+
+
+};
+
+<span class="Comment">// ------------------------------------------------------------------------------------</span>
+
+<span class="Type">void</span> solve(){
+	<span class="Type">int</span> n;cin&gt;&gt;n;
+
+	vector &lt;<span class="Type">int</span>&gt; v(n);
+
+	<span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">0</span>;i&lt;n;i++){
+		cin&gt;&gt;v[i];
+	}
+
+
+	Solution s;
+
+	vector &lt; vector &lt;<span class="Type">int</span>&gt; &gt; ans;
+	ans=s.threeSum(v);
+	<span class="Statement">if</span>((<span class="Type">int</span>)ans.size()==<span class="Constant">0</span>){
+		cout&lt;&lt;<span class="Constant">&quot;</span><span class="Special">\n</span><span class="Constant"> EMPTY ANSWER&quot;</span>;
+	}
+	<span class="Statement">for</span>(<span class="Type">int</span> i=<span class="Constant">0</span>;i&lt;(<span class="Type">int</span>)ans.size();i++){
+		cout&lt;&lt;endl;
+		<span class="Statement">for</span>(<span class="Type">int</span> j=<span class="Constant">0</span>;j&lt;(<span class="Type">int</span>)ans[i].size();j++){
+			cout&lt;&lt;ans[i][j]&lt;&lt;<span class="Constant">&quot;</span><span class="Special">\t</span><span class="Constant">&quot;</span>;
+		}
+	}
+}
+
+<span class="Type">int</span> main(){
+	ios_base::sync_with_stdio(<span class="Constant">false</span>);
+	cin.tie(<span class="Constant">NULL</span>);
+	<span class="Type">int</span> t;cin&gt;&gt;t;
+	<span class="Statement">while</span>(t--){
+		solve();cout&lt;&lt;endl;
+	}
+}
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
