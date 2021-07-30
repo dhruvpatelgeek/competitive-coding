@@ -1,96 +1,60 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-
 class Solution {
-#define if16t int_fast16_t 
 public:
-    int search(vector<int>& v, int k) {
-	// find the pivot of the array
-	
-	const if16t sz=(if16t)v.size();
-	if(sz<=3){
-		for(int i=0;i<sz;i++){
-			if(v[i]==k){
-				return i;
-			}
-		}
-
-		return -1;
-	}
-	if16t pivot=0;
-	if16t exa=v[sz-1];
-	for(if16t l=0,r=sz-1,t=0;l<=r;){
-		t=l+r;
-		t=t/2; // target is floor of (l+r)/2
-		if(t!=0&&t!=sz-1){
-			if(v[t-1]<v[t]&&v[t]>v[t+1]){
-				pivot=t;
-				break;
-			}
-		} else {
-			pivot=t;
-			break;
-		}
-		
-		if(v[t]>exa){
-			l=t;
-		} else if(v[t]<exa){
-			r=t;
-		} else {
-			pivot=t;
-			break;
-		}
-	}
-	
-	if16t ans=-1;
-	if16t l,r,t,prev_t;
-	l=0;
-	r=sz-1;
-	t=prev_t=-1;
-	if(k==v[pivot]){
-		return pivot;	
-	} else if(k>exa){
-		r=pivot;					
-	} else {
-		l=pivot;
-	}
-	while(l<=r){
-		t=l+r;
-		t/=2;
-		if(prev_t==t){
-			break;
-		} else {
-			prev_t=t;
-		}
-		if(v[t]==k){
-			ans=t;
-			break;
-		} else if(v[t]>k){
-			r=t;
-		} else {
-			l=t+1;
-		}
-	}
-        return (int)ans; 
+    void setZeroes(vector<vector<int>>& v) {
+        int *r =new int[200];
+        int *c =new int[200];
+        memset(r,0xffffffff,sizeof(int)*200);
+        memset(c,0xffffffff,sizeof(int)*200);
+        for(int i=0;i<(int)v.size();i++){
+                for(int j=0;j<(int)v[i].size();j++){
+                        if(v[i][j]==0){
+                                r[i]=1;
+                                c[j]=1;
+                        }
+                }
+        }
+        // for rows    
+        for(int k=0;k<200;k++){
+                if(r[k]==1){
+                        memset(&v[k][0],0,sizeof(int)*((int)v[0].size()));
+                }
+        }
+        
+        // for cloumns
+        for(int k=0;k<200;k++){
+                if(c[k]==1){
+                        for(int i=0;i<(int)v.size();i++){
+                                v[i][k]=0;
+                        }
+                }        
+        }
+            
+        delete[] r;
+        delete[] c;
     }
 };
 
 void solve(){
-	int n,k;cin>>n>>k;
-	vector<int> v(n);
+	int n,m; cin>>n>>m;
+	vector< vector <int> > v;
+
 	for(int i=0;i<n;i++){
-		cin>>v[i];
+		for(int j=0;j<m;j++){
+			cin>>v[i][j];
+		}
 	}
-	cout<<"\nTARGET IS "<<k;
-	cout<<endl;
-	for(int i=0;i<n;i++){
-		cout<<endl<<"{"<<v[i]<<","<<i<<"}";
-	}
-	cout<<"\n----------";
 	Solution s;
-	int ans=s.search(v,k);
-	cout<<endl<<ans;
+	s.setZeroes(v);
+	for(int i=0;i<n;i++){
+		cout<<endl;
+		for(int j=0;j<m;j++){
+			cout<<v[i][j]<<" ";
+		}
+	}
+
 }
 
 int main(){
