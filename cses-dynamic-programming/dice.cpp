@@ -2,39 +2,31 @@
 
 using namespace std;
 
-int fct(int n, int *fctarr){
-	
-	if(fctarr[n]!=-1){
-		cout<<"\n HIT "<<n<<endl;
-		return fctarr[n];
-	}
-	int ans=1;	
-	if(n<2){ // 0! 1! =1
-		ans=n;
-	} else {
-		ans=n*fct(n-1,fctarr);
-	}
-	fctarr[n]=ans;
-	return ans;
-}
-
 void solve(){
-	int n; cin>>n;
-	int *fctarr = new int[200];
-	memset(fctarr,0xffffffff,sizeof(int)*200);
-
-	vector< vector <int> > dp;
+	const int max_die_val=6;
+	const int mod =1e9+7;
+	int n;cin>>n;
+	int64_t *a = new int64_t[n+1];
 	
-	//1-sum
-	//2-sum
-	//3-sum
-	//4-sum
-	//...
-	//n-sum
+	// account for the number being on the die 
+	for(int i=1;i<=max_die_val&&i<=n;i++){
+		a[i]=1; 
+	}	
+
+	for(int i=1;i<=n;i++){
+		for(int j=i-1;j>=i-max_die_val&&j>0;j--){
+			a[i] += a[j];
+			a[i] %= mod;
+		}
+	} 
+	cout<<a[n];
+	delete[] a;
 }
+
 
 int main(){
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	solve();
+	cout<<endl;
 }
