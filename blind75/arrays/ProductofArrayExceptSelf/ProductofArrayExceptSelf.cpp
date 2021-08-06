@@ -44,11 +44,11 @@ public:
 	
 	    vector<int> ans(sz);
 	
-	    ans[0]=rp[1];ans[sz-1]=lp[sz-2];
-	    for(int i=1;i<sz-1;i++){
+	    ans[0]=rp[1];ans[sz-1]=lp[sz-2];for(int i=1;i<sz-1;i++){
 		ans[i]=lp[i-1]*rp[i+1];
 	    }
-
+	    delete[] lp;
+	    delete[] rp;
 	    return ans;
     }
 };
