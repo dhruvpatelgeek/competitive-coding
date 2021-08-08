@@ -1,7 +1,7 @@
 # competitive-coding
 My journal of competitive coding, to help me prepare for interviews and stuff.
 
-### Topics
+## General
 
 #### Dyanmic Programming 
 
@@ -16,19 +16,56 @@ My journal of competitive coding, to help me prepare for interviews and stuff.
 
 #### Data Structure implementations
   Binary Tree
-  
+
   Binary Search Tree
-  
+
   AVL tree
-  
+
   Red Black tree
-  
+
   Trie
-  
+
   Segment Tree
-  
+
   LRU cache
-  
+
   MRU cache
-  
+
   Heap
+
+
+
+## CSES 
+
+Dynamic programming
+
+Graphs
+
+Trees
+
+## Blind75
+
+Arrays
+
+Dynamic programming
+
+Trees
+
+Graphs
+
+string
+
+Linked List
+
+Matrix
+
+## Leetcode Hard++ set
+
+TrapRainWater-III
+
+## MISC
+
+Amazon interview brazen
+
+Sap interview sieve of erithosines
+
