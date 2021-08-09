@@ -6,30 +6,13 @@ class Solution {
 public:
     int maxSubArray(vector<int>& v) {
 	const int sz=(int)v.size();
-	int ans=-111;
-	for(int ti=0;i<sz;cout<<v[i++]<<"\t");
-	int **dp= new int*[sz];
-	for(int i=0;i<sz;i++){
-		dp[i]=new int[sz];
-		memset(dp[i],0xffffffff,sizeof(int)*sz);
-	}
-
-	for(int i=0;i<sz;i++){
-		cout<<endl;
-		for(int j=0;j<sz;j++){
-			if(j<i){
-				cout<<"\t";
-			} else {
-				cout<<i<<","<<j<<"\t";	
-				//cout<<dp[i][j]<<"\t";
-			}
-		}
-	}
+	int ans=-10000000;
+	int dp[30000][30000];
 	/*
 	 * dp[i][j] represents the sum of all the numbers between i annd j 
 	 */
-	dp[0][0]=0;for(int i=1;i<sz;i++){
-		dp[0][i]+=v[i]+dp[0][i-1];
+	dp[0][0]=v[0];for(int i=1;i<sz;i++){
+		dp[0][i]=v[i]+dp[0][i-1];
 	}
 
 	for(int i=1;i<sz;i++){
@@ -39,17 +22,10 @@ public:
 	}
 
 	for(int i=0;i<sz;i++){
-		cout<<endl;
-		for(int j=0;j<sz;j++){
-			if(j<i){
-				cout<<"\t";
-			} else {
-				//cout<<i<<","<<j<<"\t";	
-				cout<<dp[i][j]<<"\t";
-			}
+		for(int j=i;j<sz;j++){
+			ans=max(dp[i][j],ans);
 		}
 	}
-	cout<<endl;
 	return ans;
     }    
 };
