@@ -7,7 +7,11 @@ public:
     int maxSubArray(vector<int>& v) {
 	const int sz=(int)v.size();
 	int ans=-10000000;
-	int dp[30000][30000];
+	int **dp= new int*[sz];
+	for(int i=0;i<sz;i++){
+		dp[i]=new int[sz];
+		memset(dp[i],0xffffffff,sizeof(int)*sz);
+	}
 	/*
 	 * dp[i][j] represents the sum of all the numbers between i annd j 
 	 */
@@ -26,6 +30,10 @@ public:
 			ans=max(dp[i][j],ans);
 		}
 	}
+	for(int i=0;i<sz;i++){
+		delete[] dp[i];
+	}
+	delete[] dp;
 	return ans;
     }    
 };
