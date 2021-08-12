@@ -1,3 +1,12 @@
+/*
+ * author: dhruvpatel(github)
+ *
+ * link: https://leetcode.com/submissions/detail/537117053/
+ * 
+ * Runtime: 192 ms, faster than 60.37% of C++ online submissions for Longest Increasing Subsequence.
+ * Memory Usage: 10.5 MB, less than 60.89% of C++ online submissions for Longest Increasing Subsequence.
+ *
+ */ 
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -14,8 +23,11 @@ public:
 	//  1 1 1 2 1 3 4   1
 	
 	int *dp = new int[n];
-	for(int i=0;i<n;i++){
-		dp[0]=1;
+	
+
+	dp[0]=1;
+	for(int i=1;i<n;i++){
+		dp[i]=1;
 		for(int j=0;j<i;j++){
 			if(v[j]<v[i]){
 				dp[i]=max(dp[i],dp[j]+1);
@@ -24,7 +36,7 @@ public:
 	}
 
 	cout<<"\n the dp array is\n";
-	for(int i=0;i<n;cout<<dp[i++]<<" ");
+	for(int i=0;i<n;cout<<dp[i++]<<"\t");
 	cout<<endl;
 
 	for(int i=0;i<n;max_sol=max(dp[i++],max_sol));
