@@ -1,6 +1,11 @@
+
 # competitive-coding
+
 My journal of competitive coding, to help me prepare for interviews and stuff.
 
+----
+### currently on blind75 (https://github.com/dhruvpatelgeek/competitive-coding/blob/master/blind75)
+----
 ## General
 
 #### Dyanmic Programming 
