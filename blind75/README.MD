@@ -7,7 +7,9 @@ https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questio
 > all my answers should beat 60% of all submitted answers for c++17 at minimum
 
 After this i plan on doing CSES PSETs
+
 After that codeforces 2000 level problems
+
 After that ... reverse space time continuum xD
 	
 ## Array
