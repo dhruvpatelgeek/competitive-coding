@@ -34,8 +34,14 @@ public:
 			}
 		}
 	    }
-
-	    return dp[n-1][m-1]; 
+        
+            int ans=dp[n-1][m-1]; 
+            
+            for(int i=0;i<n;i++){
+                    delete[] dp[i];
+            }
+            delete[] dp;
+	    return ans; 
     }
 };
 
