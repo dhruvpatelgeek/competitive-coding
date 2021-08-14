@@ -1,51 +1,16 @@
 Here is my solution to 
 
-leetcode blind 75
+Blind75
 https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions
 
-the list itself is not to challanging so i have decided that
-
+> the list itself is not too challenging so i have decided that
 > all my answers should beat 60% of all submitted answers for c++17 at minimum
 
-## Schedule
+After this i plan on doing CSES PSETs
 
-Arrays +BitSet [Aug 8]
+After that codeforces 2000 level problems
 
-Dynamic Programming [Aug 9,10,11]
-
-Strings Aug [12,13]
-
-Linked List [Aug 14,15]
-
-Graphs [Aug 16,17]
-
-Trees [Aug 18,19,20]
-
-[Competition] Aug 21 Kickstart 2021 Round E at 20:30 PST 
-
-Heaps [Aug 22]
-
-Matrix [Aug 23]
-
-Intervals [Aug 24]
-
-[BLIND 75 Finished]
-
-	[start CSES Problem Set]
-
-		ONE PER DAY EACH
-
-			Dynamic Programming
-
-			Graph Algorithms
-		
-			Tree Algorithms
-	
-			String Algorithms
-	
-			Sorting and Searching
-
-	[DO LEETCODE HARD++ PROBLEMSETS]
+After that ... reverse space time continuum xD
 	
 ## Array
 
@@ -147,13 +112,13 @@ Intervals [Aug 24]
 ---
 
 ## Tree
-- [x] [Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
-- [x] [Same Tree](https://leetcode.com/problems/same-tree/)
-- [x] [Invert/Flip Binary Tree](https://leetcode.com/problems/invert-binary-tree/)
+- [ ] [Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
+- [ ] [Same Tree](https://leetcode.com/problems/same-tree/)
+- [ ] [Invert/Flip Binary Tree](https://leetcode.com/problems/invert-binary-tree/)
 - [ ] [Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/)
-- [x] [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
+- [ ] [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
 - [ ] [Serialize and Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)
-- [x] [Subtree of Another Tree](https://leetcode.com/problems/subtree-of-another-tree/)
+- [ ] [Subtree of Another Tree](https://leetcode.com/problems/subtree-of-another-tree/)
 - [ ] [Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
 - [ ] [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)
 - [ ] [Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
