@@ -1,7 +1,3 @@
-/*
- * will get back to this quesiton
- *
- */
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -13,59 +9,54 @@ int TEMPLATE_TYPE = 1;
 
 //Time profile----------------------------------------------------
 bool time_profile = false;
+bool MULTI_TEST=true;
 //----------------------------------------------------------------
 
 //[competitive template]------------------------------------------
 #define mp make_pair
 #define mv make_vector
-#define s size
 #define mt make_tuple
-
 #define x first
 #define y second
 #define pb push_back
-typedef long long ll;
+#define all(x) (x).begin(), (x).end()
 
+#define ll long long
 //----------------------------------------------------------------
 
-int8_t countSeq(vector<vector<int>> v){
-	int8_t seqCtr=0;
-	/*
-	 * count sequences form left to right
-	 *
-	 */
-
-	for(int j=0;j<v[0].size();j++)
-		for(int i=0;i<v.size();i++){
-		}
-	return seqCtr;
-}
 void solve(){
-	vector< vector<int> > v(3,vector<int>(3,0));
-	int8_t n=3;
-	for(int8_t i=0;i<n;i++){
-		for(int8_t j=0;j<n;){
-
-			if(i==1&&j==1){
-				j++;
-			} else {
-				cin>>v[i][j++];
-			}
-		}
+	int n,b,nx;cin>>n>>b;
+	const int sz=100000;
+	int *a=new int[sz];
+	memset(a,0x0,sizeof(int)*sz);
+	for(int i=0,a_vals=0;i<n;i++){
+		cin>>a_vals;
+		a[a_vals]++;
 	}
-	cout<<endl;
-	for(int8_t i=0;i<v.size();i++,cout<<endl)
-		for(int8_t j=0;j<v[i].size();cout<<v[i][j++]<<"\t");
-	cout<<22;
+	nx=0;
+	for(int i=0,qty=0;i<sz;i++){
+		if(a[i]!=0){
+			if(b-i>=0){
+				qty=min(b/i,a[i]);
+				nx+=qty;
+				b-=i*qty;
+			}
+		}	
+	}
+	delete[] a;
+	cout<<nx;
+
 }
-int main()
-{
+
+int main(){
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	int t;
 	double total = 0;
 	int i = 1;
-	cin >> t;
+	t=1;
+	if (MULTI_TEST)
+		cin >> t;
 	if (time_profile)
 	{
 		std::chrono::time_point<std::chrono::system_clock> start, end;
@@ -97,4 +88,3 @@ int main()
 		}
 	}
 }
-
