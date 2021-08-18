@@ -10,7 +10,6 @@
 
 using namespace std;
 
-
 class Solution {
 #define x first
 #define y second
@@ -41,7 +40,7 @@ public:
 			nx=a.x+todo[i][0];	
 			ny=a.y+todo[i][1];	
 			nc=todo[i][2]+1;
-			cout<<"\n the next paths are "<<nx<<" "<<ny<<"  with cost "<<nc;
+			//cout<<"\n the next paths are "<<nx<<" "<<ny<<"  with cost "<<nc;
 			if(done.count(mp(nx,ny))==0){
 				todo.pb( vector <int> {nx,ny,nc} );
 			}

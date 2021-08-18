@@ -18,6 +18,8 @@ int min_coin(int t,int* c,int csz, ifxt* dp){
 	if(t==0){
 		return 1;
 	}
+
+	Solution s;
 	int mod =1e9+7;
 	int num_ways=0;
 	for(int i=0;i<csz;i++){
