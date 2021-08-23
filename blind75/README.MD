@@ -11,8 +11,10 @@ After this i plan on doing CSES PSETs
 After that codeforces 2000 level problems
 
 After that ... reverse space time continuum xD
+
+Progress ![26%](https://progress-bar.dev/26)
 	
-## Array
+## Array 
 
 - [x] [Two Sum](https://leetcode.com/problems/two-sum/)
 - [x] [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
