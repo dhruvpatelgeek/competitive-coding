@@ -12,7 +12,7 @@ After that codeforces 2000 level problems
 
 After that ... reverse space time continuum xD
 
-Progress ![26%](https://progress-bar.dev/26)
+
 	
 ## Array 
 
