@@ -1,0 +1,11 @@
+2
+6
+eat 
+tea 
+tan 
+ate 
+nat 
+bat
+1
+a
+
