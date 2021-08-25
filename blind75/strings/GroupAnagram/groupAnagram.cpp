@@ -26,7 +26,7 @@ public:
 	    	map<vector<int>,vector<string>> hash_map;
 		for(auto&&s:v){
 			vector<int> str_h(32);
-			memset((void*)&str_h[0],0,sizeof(a[0])*32);
+			memset((void*)&str_h[0],0,sizeof(str_h[0])*32);
 			for(int i=0;i<(int)s.size();str_h[(int)s[i++]-96]++);
 			hash_map[str_h].push_back(s);
 		}
