@@ -1,3 +1,14 @@
+/*
+ * author: dhruvpatelgeek(github)
+ *
+ * link: https://leetcode.com/submissions/detail/544678614/
+ *
+ * Runtime: 0 ms, faster than 100.00% of C++ online submissions for Maximum Subarray.
+ * Memory Usage: 13.3 MB, less than 11.79% of C++ online submissions for Maximum Subarray.
+ * 
+ * note: trivial DP problem
+ *
+ */ 
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -5,34 +16,18 @@ using namespace std;
 class Solution {
 public:
     int maxSubArray(vector<int>& v) {
-	    const int n=(int)v.size();
-	    int ans=-1000000;
-	    for(int i=0;i<n;i++){
-		ans+=v[i];
-	    }
-
-	    if(n==1){return v[0];}
-
-	    for(int i=0,sum=0,p1=0;i<n;i++){
-		sum+=v[i];
-		if(sum<0){
-			p1=++i;
-			sum=calSum(v,p1,i);
-		}
-		ans=max(sum,ans);
-	    }
-	    return ans;
+	const int n = (int)v.size();
+	int ans=v[0];
+	int *dp=new int[n];
+	dp[0]=v[0];
+	for(int i=1;i<n;i++){
+		dp[i]=max(v[i],dp[i-1]+v[i]);
+		ans=max(ans,dp[i]);
+	}
+	return ans;
     }
 
-    int calSum(vector<int>& v,int a,int b){
-	    int sum=0;
-		for(int i=a;i<=b;i++){
-			sum+=v[i];	
-		}
-	   return sum;
-    }
 };
-
 void solve(){
 	int n;cin>>n; vector<int> v(n); for(int i=0;i<n;cin>>v[i++]);
 	Solution s;
