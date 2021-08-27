@@ -3,20 +3,30 @@
 using namespace std;
 
 class Solution {
+#define x first
+#define y second
+#define pb push_back
+#define mp make_pair        
 public:
     vector<int> topKFrequent(vector<int>& v, int k) {
-	const int MAX_NUM =100000+1;
-	int *a=new int[MAX_NUM];
-	memset(a,0xffffff,sizeof(int)*MAX_NUM);
-	vector<int> ans;
-	for(int i=0;i<(int)v.size();a[v[i++]]++);
-	for(int i=0;i<MAX_NUM&&(k!=0);i++){
-		if(a[i]!=-1){
-			ans.push_back(i);
-			k--;
-		}
-	}
-	return ans;
+	vector< pair<int,int> > freq;
+        unordered_map<int,int> mpx;
+        vector<int> ans;
+            
+        for(auto&&a:v){
+                mpx[a]++;
+        }
+        for(auto&&a:mpx){
+                freq.pb(mp(a.y,a.x));
+        }
+        make_heap(freq.begin(),freq.end());
+            
+        for(int i=0;i<k;i++){
+                ans.pb(freq.front().y);
+                pop_heap(freq.begin(), freq.end());
+                freq.pop_back();
+        }
+        return ans;
     }
 };
 
