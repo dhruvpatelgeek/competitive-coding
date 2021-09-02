@@ -1,14 +1,11 @@
 // link: https://leetcode.com/problems/array-nesting/submissions/
-
 class Solution {
         const int sz=100000;
 public:
     int arrayNesting(vector<int>& v) {
-        int *a=new int[sz];
+        unordered_map <int,int> a;
         int *b=new int[sz];
-        memset(a,0,sizeof(a[0])*sz);
         memset(b,0xffffffff,sizeof(b[0])*sz);
-            
         int ans=0;
         int ctr=0;
         int itr=v[0];
@@ -21,14 +18,16 @@ public:
                                 break;
                         }
                         ++a[itr];
-                        itr=v[itr];
                         ++ctr;
+                        b[itr]=ctr;
+                        itr=v[itr];
+                       
                 }
                 b[value]=ctr;
-                memset(a,0,sizeof(a[0])*sz);
+                a.clear();
                ans=max(ctr,ans);
         }
-            delete[] a;
+           
             delete[] b;
             return ans;
     }
