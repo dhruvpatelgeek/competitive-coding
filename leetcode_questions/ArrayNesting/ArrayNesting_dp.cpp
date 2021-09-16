@@ -1,4 +1,5 @@
-// link: https://leetcode.com/problems/array-nesting/submissions/
+//https://leetcode.com/problems/array-nesting/submissions/
+
 class Solution {
         const int sz=100000;
 public:
@@ -23,8 +24,8 @@ public:
                         itr=v[itr];
                        
                 }
-                b[value]=ctr;
-                a.clear();
+               b[value]=ctr;
+               a.clear();
                ans=max(ctr,ans);
         }
            

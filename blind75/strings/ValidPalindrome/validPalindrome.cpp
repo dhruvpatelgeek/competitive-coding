@@ -6,6 +6,7 @@ void solve(){
 	char s[1000];
 	cin.getline(s,1000);
 	cout<<s;
+
 }
 
 int main(){
