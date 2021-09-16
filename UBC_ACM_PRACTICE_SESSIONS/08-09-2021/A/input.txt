@@ -1,0 +1,4 @@
+3
+abc atcoder
+arc agc
+a aa
