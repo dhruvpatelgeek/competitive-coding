@@ -7,11 +7,20 @@ using namespace std;
 void solve(){
 	int n; cin>>n;
 	string s; cin>>s;
-	vector<int> v(n);
+	vector<int> v(n),p(n);
 	for(int i=0;i<n;i++){
 		v[i]=(int)s[i]-49+1;
 	}
+	p=v;
 
+	int num_2=0;
+	int loc_last_2=0;
+	for(int i=0;i<n;i++){
+		if(v[i]==2){
+			num_2++;
+			loc_last_2=i;
+		}
+	}
 	char **win_mat=new char*[n];
 	for(int i=0;i<n;i++){
 		win_mat[i]=new char[n];
@@ -25,7 +34,7 @@ void solve(){
 				continue;
 			}
 
-			// if 2 and 2 then i>j i lose else j lose 
+			// if 2 and 2 then i>j i lose else j lose if it is the last 2 then win that
 			// if 2 and 1 then -
 			// if 1 and 1 then =
 			// if * and 0 choose +
@@ -33,25 +42,33 @@ void solve(){
 
 			if(v[i]==2){
 				switch(v[j]){
-					case 0:
-						win_mat[i][j]='+';
-						v[i]=0;
-						break;
 					case 1:
 						win_mat[i][j]='-';
 						break;
 					case 2:
-						win_mat[i][j]='-';
-						v[j]=0;
+						// fill this lose for all except the last one for i=0;
+						// rest lose all
+						if(i==0){
+							if(j==loc_last_2){
+								win_mat[i][j]='+';
+								p[i]=0;
+							} else { 
+								win_mat[i][j]='-';
+								p[j]=0;
+							}
+						} else if(i==loc_last_2) {
+							win_mat[i][j]='+';
+							p[i]='0';
+						} else {
+								win_mat[i][j]='-';
+						}
+						
 						break;
 					default:
 						cout<<"\n NULL CHAR "<<v[j];
 				}
 			} else if(v[i]==1){
 				switch(v[j]){
-					case 0:
-						win_mat[i][j]='+';
-						break;
 					case 1:
 						win_mat[i][j]='=';
 						break;
@@ -61,23 +78,16 @@ void solve(){
 					default:
 						cout<<"\n NULL CHAR "<<v[j];
 					} 
-			} else if(v[i]==0){
-						win_mat[i][j]='-';
 			} else {
 				cout<<"\n NULL SEG REACHED \t "<<v[i];
-				if(v[i]==1){
-					cout<<"\n true";
-				}
 			}
 		}
 	}
 	bool flag=true;
 	cout<<endl;
-	for(auto&&a:v){
-		cout<<a<<"\t";
+	for(auto&&a:p){
 		if(a==2){
 			flag=false;
-			break;
 		}
 	}
 	if(true){
